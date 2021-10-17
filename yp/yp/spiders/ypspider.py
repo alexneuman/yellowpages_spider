@@ -20,7 +20,7 @@ class YpspiderSpider(scrapy.Spider):
     def business_page(self, response):
         email = response.xpath('.//a[@class="email-business"]/@href').get()
         yield {
-        'name': response.css('.sales-info h1').get(),
+        'name': response.xpath('.//h1/text()').get(),
         'phone': response.xpath('.//p[@class="phone"]/text()').get(),
         'email': email.replace('mailto:', '') if email else None
         }
